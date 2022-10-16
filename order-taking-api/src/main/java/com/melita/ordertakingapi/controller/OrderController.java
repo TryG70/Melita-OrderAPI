@@ -26,9 +26,9 @@ public class OrderController {
 
 
     @PostMapping(value = "/create")
-    public OrderResponse createOrder(@Valid @RequestBody OrderRequest orderRequest) {
+    public String createOrder(@Valid @RequestBody OrderRequest orderRequest) {
         log.info("Order request received: {}", orderRequest);
-        rabbitTemplate.convertAndSend(MQConfig.ORDER_EXCHANGE, MQConfig.ORDER_ROUTING_KEY, orderRequest);
-        return orderService.createOrder(orderRequest);
+        rabbitTemplate.convertAndSend(MQConfig.ORDER_EXCHANGE, MQConfig.ORDER_ROUTING_KEY, orderService.createOrder(orderRequest));
+        return "Published to RabbitMQ";
     }
 }
