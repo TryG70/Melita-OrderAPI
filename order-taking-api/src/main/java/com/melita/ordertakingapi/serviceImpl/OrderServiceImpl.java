@@ -1,5 +1,6 @@
 package com.melita.ordertakingapi.serviceImpl;
 
+import com.melita.ordertakingapi.exception.InvalidProductException;
 import com.melita.ordertakingapi.request.OrderRequest;
 import com.melita.ordertakingapi.response.OrderResponse;
 import com.melita.ordertakingapi.service.OrderService;
@@ -37,7 +38,7 @@ public class OrderServiceImpl implements OrderService {
 
         //todo: invalid product exception
         if (orderResponse.getProductPackage().equals("Invalid Product")) {
-            throw new IllegalArgumentException("Invalid Product");
+            throw new InvalidProductException("Invalid Product");
         }
 
         return orderResponse;
