@@ -1,6 +1,7 @@
 package com.melita.orderfulfillmentapi.configuration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.module.paranamer.ParanamerModule;
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -39,7 +40,7 @@ public class MQConfig {
     @Bean
     public MessageConverter messageConverter() {
 
-        ObjectMapper mapper = new ObjectMapper().findAndRegisterModules();
+        ObjectMapper mapper = new ObjectMapper().findAndRegisterModules().registerModule(new ParanamerModule());;
 
         return new Jackson2JsonMessageConverter(mapper);
 
