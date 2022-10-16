@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8090
 
 spring:
   application:
@@ -11,5 +11,5 @@ spring:
     password:
     driver-class-name:
 
-  rabbitmq:
-    addresses: localhost:5672
+    rabbitmq:
+      addresses: localhost:5672
