@@ -1,11 +1,9 @@
 package com.melita.orderfulfillmentapi.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Data
@@ -14,11 +12,11 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(name = "orders")
 public class Order {
 
     @Id
-    @SequenceGenerator(name = "order_id_sequence" , sequenceName = "order_id_sequence", allocationSize = 1)
-    @GeneratedValue(generator = "order_id_sequence")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     private String customerName;
