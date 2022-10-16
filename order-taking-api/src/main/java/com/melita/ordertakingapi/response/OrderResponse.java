@@ -1,4 +1,4 @@
-package com.melita.ordertakingapi;
+package com.melita.ordertakingapi.response;
 
 import lombok.Builder;
 import lombok.Data;
