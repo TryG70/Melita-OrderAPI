@@ -1,0 +1,12 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: order-taking-api
+
+  datasource:
+    url:
+    username:
+    password:
+    driver-class-name:
