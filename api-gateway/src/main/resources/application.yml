@@ -1,0 +1,21 @@
+server:
+  port: 8040
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: OrderTakingApi
+          uri: lb://ORDER-TAKING-API
+          predicates:
+            - Path=/api/v1/order/**
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+
