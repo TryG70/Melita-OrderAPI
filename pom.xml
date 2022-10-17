@@ -12,6 +12,8 @@
         <module>order-taking-api</module>
         <module>order-fulfillment-api</module>
         <module>eureka-server</module>
+        <module>api-gateway</module>
+        <module>order-approval-api</module>
     </modules>
 
     <properties>
