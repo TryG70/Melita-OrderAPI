@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: order-taking-api
+    name: order-fulfillment-api
 
   datasource:
     url: jdbc:mysql://localhost:3306/melita
@@ -34,5 +34,10 @@ spring:
           auth: true
           starttls:
             enable: true
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
 
 
