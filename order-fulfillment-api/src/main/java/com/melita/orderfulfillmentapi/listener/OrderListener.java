@@ -38,16 +38,16 @@ public class OrderListener {
 
         orderService.fulfillOrder(order);
 
-        String email = orderResponse.getCustomerEmail();
-        String mailSubject = "Order Details";
-        String emailBody = "Kindly find the details of the Customer Order"  + "\n"
-                + "Customer Name: " + orderResponse.getCustomerName() + "\n"
-                + "Customer Email: " + orderResponse.getCustomerEmail() + "\n"
-                + "Customer Installation Address: " + orderResponse.getInstallationAddress() + "\n"
-                + "Customer Installation Date: " + orderResponse.getInstallationDates() + "\n"
-                + "Customer Installation Date: " + orderResponse.getProduct() + "\n"
-                + "Customer Installation Date: " + orderResponse.getProductPackage() + "\n";
-
-        mailService.sendEmail(email, mailSubject, emailBody);
+//        String email = orderResponse.getCustomerEmail();
+//        String mailSubject = "Order Details";
+//        String emailBody = "Kindly find the details of the Customer Order"  + "\n"
+//                + "Customer Name: " + orderResponse.getCustomerName() + "\n"
+//                + "Customer Email: " + orderResponse.getCustomerEmail() + "\n"
+//                + "Customer Installation Address: " + orderResponse.getInstallationAddress() + "\n"
+//                + "Customer Installation Date: " + orderResponse.getInstallationDates() + "\n"
+//                + "Customer Installation Date: " + orderResponse.getProduct() + "\n"
+//                + "Customer Installation Date: " + orderResponse.getProductPackage() + "\n";
+//
+//        mailService.sendEmail(email, mailSubject, emailBody);
     }
 }
