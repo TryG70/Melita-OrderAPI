@@ -1,0 +1,51 @@
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/TryG70/Melita-Config-File.git
+          username: TryG70
+          password: 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
+          default-label: main
+          skip-ssl-validation: true
+          refresh-rate: 0
+          clone-on-start: true
+        #          timeout: 4
+        bootstrap: true
+    bus:
+      enabled: true
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+server:
+  port: 8084
+
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:8761/eureka
+#    fetch-registry: true
+#    register-with-eureka: true
+#  #  for instance to register with eureka, if port is changed to 0 and new instances of ms needs to be spun up
+#  instance:
+#    instance-id: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+
+
+management:
+  security:
+    enabled: false
+  endpoint:
+    info:
+      enabled: true
+  endpoints:
+    enabled-by-default: true
+    web:
+      exposure:
+        include:
+          - busrefresh
+          - busenv
