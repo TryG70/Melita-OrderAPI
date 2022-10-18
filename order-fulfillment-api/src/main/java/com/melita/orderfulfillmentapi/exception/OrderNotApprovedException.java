@@ -1,8 +1,13 @@
 package com.melita.orderfulfillmentapi.exception;
 
-public class OrderNotApprovedException extends RuntimeException {
-    public OrderNotApprovedException(String message) {
+import lombok.Data;
 
+@Data
+public class OrderNotApprovedException extends RuntimeException {
+
+    private String message;
+    public OrderNotApprovedException(String message) {
+        this.message = message;
     }
 
 }
