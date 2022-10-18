@@ -2,7 +2,6 @@ package com.melita.ordertakingapi.controller;
 
 import com.melita.ordertakingapi.configuration.MQConfig;
 import com.melita.ordertakingapi.request.OrderRequest;
-import com.melita.ordertakingapi.response.OrderResponse;
 import com.melita.ordertakingapi.service.OrderService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
