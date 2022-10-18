@@ -21,4 +21,5 @@ public class OrderResponse implements Serializable {
     private LocalDateTime installationDates;
     private String product;
     private String productPackage;
+    private String isApproved;
 }
