@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: order-taking-api
+  cloud:
+    config:
+      uri: http://localhost:8084
+      name: config-server
+
+management:
+  security:
+    enabled: false
