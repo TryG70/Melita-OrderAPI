@@ -25,4 +25,5 @@ public class Order {
     private LocalDateTime installationDates;
     private String product;
     private String productPackage;
+    private String isApproved;
 }
