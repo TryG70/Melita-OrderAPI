@@ -2,41 +2,47 @@ package com.melita.orderfulfillmentapi.listener;
 
 import com.melita.orderfulfillmentapi.configuration.MQConfig;
 import com.melita.orderfulfillmentapi.entity.Order;
+import com.melita.orderfulfillmentapi.exception.OrderNotApprovedException;
 import com.melita.orderfulfillmentapi.response.OrderResponse;
 import com.melita.orderfulfillmentapi.service.OrderService;
-import com.melita.orderfulfillmentapi.serviceImpl.MailService;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.mail.MessagingException;
 
 @Component
 public class OrderListener {
 
     private final OrderService orderService;
-    private final MailService mailService;
 
     @Autowired
-    public OrderListener(OrderService orderService, MailService mailService) {
+    public OrderListener(OrderService orderService) {
         this.orderService = orderService;
-        this.mailService = mailService;
     }
 
 
-    @RabbitListener(queues = MQConfig.ORDER_QUEUE)
-    public void listen(OrderResponse orderResponse) throws MessagingException {
+    @RabbitListener(queues = MQConfig.ORDER_APPROVAL_QUEUE)
+    public void listen(OrderResponse orderResponse) {
 
-        Order order = Order.builder()
-                .customerName(orderResponse.getCustomerName())
-                .customerEmail(orderResponse.getCustomerEmail())
-                .installationAddress(orderResponse.getInstallationAddress())
-                .installationDates(orderResponse.getInstallationDates())
-                .product(orderResponse.getProduct())
-                .productPackage(orderResponse.getProductPackage())
-                .build();
+        if (orderResponse.getIsApproved().equals("true")) {
 
-        orderService.fulfillOrder(order);
+            Order order = Order.builder()
+                    .customerName(orderResponse.getCustomerName())
+                    .customerEmail(orderResponse.getCustomerEmail())
+                    .installationAddress(orderResponse.getInstallationAddress())
+                    .installationDates(orderResponse.getInstallationDates())
+                    .product(orderResponse.getProduct())
+                    .productPackage(orderResponse.getProductPackage())
+                    .isApproved(orderResponse.getIsApproved())
+                    .build();
+
+            orderService.fulfillOrder(order);
+
+        } else {
+            throw new OrderNotApprovedException("Order not approved");
+        }
+
+
 
 //        String email = orderResponse.getCustomerEmail();
 //        String mailSubject = "Order Details";
