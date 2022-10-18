@@ -1,4 +1,4 @@
-package com.melita.orderfulfillmentapi.serviceImpl;
+package com.melita.mailservice.service;
 
 
 import lombok.Data;
@@ -8,7 +8,7 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import javax.activation.FileDataSource;
-import javax.mail.*;
+import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
 
