@@ -18,6 +18,14 @@ spring:
   rabbitmq:
     addresses: localhost:5672
 
+  cloud:
+    bus:
+      enabled: true
+      refresh:
+        enabled: true
+      env:
+        enabled: true
+
 eureka:
   client:
     service-url:
