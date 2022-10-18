@@ -1,0 +1,30 @@
+server:
+  port: 8014
+
+spring:
+  application:
+    name: mail-service
+
+
+  rabbitmq:
+    addresses: localhost:5672
+
+
+
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: rewardyourteacher@gmail.com
+    password: okkipwghkwjvzwcb
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+
