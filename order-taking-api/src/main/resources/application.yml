@@ -1,9 +1,15 @@
 server:
   port: 8080
 
+env-values:
+  auth-token: 879470
+
 spring:
   application:
     name: order-taking-api
+
+  config:
+    import: optional:configserver:http://localhost:8084
 
   datasource:
     url:
@@ -18,3 +24,15 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka
+
+management:
+  security:
+    enabled: false
+  endpoint:
+    info:
+      enabled: true
+  endpoints:
+    enabled-by-default: true
+    web:
+      exposure:
+        include: "*"
