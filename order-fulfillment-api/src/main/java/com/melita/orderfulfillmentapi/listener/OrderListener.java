@@ -6,12 +6,14 @@ import com.melita.orderfulfillmentapi.entity.Order;
 import com.melita.orderfulfillmentapi.exception.OrderNotApprovedException;
 import com.melita.orderfulfillmentapi.response.OrderResponse;
 import com.melita.orderfulfillmentapi.service.OrderService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 
+@Slf4j
 @Component
 public class OrderListener {
 
@@ -28,6 +30,8 @@ public class OrderListener {
 
     @RabbitListener(queues = ApprovalMQConfig.ORDER_APPROVAL_QUEUE)
     public void listen(OrderResponse orderResponse) {
+
+        log.info("Received message from approval queue: {}", orderResponse);
 
         if (orderResponse.getIsApproved().equals("true")) {
 
