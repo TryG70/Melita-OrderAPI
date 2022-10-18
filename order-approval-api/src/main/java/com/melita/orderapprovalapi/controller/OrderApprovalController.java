@@ -23,7 +23,7 @@ public class OrderApprovalController {
     public String approveOrder(@PathVariable("id") Long id) {
         log.info("Approve Order with Id: {}", id);
         rabbitTemplate.convertAndSend(ApprovalMQConfig.ORDER_APPROVAL_EXCHANGE, ApprovalMQConfig.ORDER_APPROVAL_ROUTING_KEY, orderService.approveOrder(id));
-        return "Published to RabbitMQ";
+        return "Order Approved. Published to RabbitMQ";
     }
 
 
@@ -31,6 +31,6 @@ public class OrderApprovalController {
     public String declineOrder(@PathVariable("id") Long id) {
         log.info("Approve Order with Id: {}", id);
         rabbitTemplate.convertAndSend(ApprovalMQConfig.ORDER_APPROVAL_EXCHANGE, ApprovalMQConfig.ORDER_APPROVAL_ROUTING_KEY, orderService.declineOrder(id));
-        return "Published to RabbitMQ";
+        return "Order Cancelled. Published to RabbitMQ";
     }
 }
