@@ -8,7 +8,9 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.amqp.support.converter.MessageConverter;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
+@Configuration
 public class ApprovalMQConfig {
 
     public static final String ORDER_APPROVAL_QUEUE = "order-approval-queue";
@@ -16,18 +18,18 @@ public class ApprovalMQConfig {
     public static final String ORDER_APPROVAL_ROUTING_KEY = "order-approval-routing-key";
 
     @Bean
-    public Queue orderQueue() {
+    public Queue orderApprovalQueue() {
         return new Queue(ORDER_APPROVAL_QUEUE);
     }
 
 
     @Bean
-    public TopicExchange orderExchange() {
+    public TopicExchange orderApprovalExchange() {
         return new TopicExchange(ORDER_APPROVAL_EXCHANGE);
     }
 
     @Bean
-    public Binding binding(Queue orderQueue, TopicExchange orderExchange) {
+    public Binding bindingApproval(Queue orderQueue, TopicExchange orderExchange) {
         return BindingBuilder
                 .bind(orderQueue)
                 .to(orderExchange)
@@ -35,7 +37,7 @@ public class ApprovalMQConfig {
     }
 
     @Bean
-    public MessageConverter messageConverter() {
+    public MessageConverter messageApprovalConverter() {
 
         ObjectMapper mapper = new ObjectMapper().findAndRegisterModules().registerModule(new ParanamerModule());
 
@@ -44,9 +46,9 @@ public class ApprovalMQConfig {
     }
 
     @Bean
-    public AmqpTemplate ampqTemplate(ConnectionFactory connectionFactory) {
+    public AmqpTemplate ampqApprovalTemplate(ConnectionFactory connectionFactory) {
         RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory);
-        rabbitTemplate.setMessageConverter(messageConverter());
+        rabbitTemplate.setMessageConverter(messageApprovalConverter());
         return rabbitTemplate;
     }
 }
