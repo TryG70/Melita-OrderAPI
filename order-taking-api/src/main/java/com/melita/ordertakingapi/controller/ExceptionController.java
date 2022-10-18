@@ -14,7 +14,7 @@ import static org.springframework.http.HttpStatus.FORBIDDEN;
 public class ExceptionController extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(InvalidProductException.class)
-    public ResponseEntity<Object> userAlreadyExists(InvalidProductException exception) {
+    public ResponseEntity<Object> invalidProduct(InvalidProductException exception) {
 
         ExceptionResponse exceptionResponse = new ExceptionResponse(exception.getMessage(), FORBIDDEN);
         return new ResponseEntity<>(exceptionResponse, FORBIDDEN);
