@@ -42,7 +42,6 @@ public class MQConfig {
         ObjectMapper mapper = new ObjectMapper().findAndRegisterModules();
 
         return new Jackson2JsonMessageConverter(mapper);
-//        return new Jackson2JsonMessageConverter();
     }
 
     @Bean
