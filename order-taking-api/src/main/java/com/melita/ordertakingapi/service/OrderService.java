@@ -5,4 +5,5 @@ import com.melita.ordertakingapi.response.OrderResponse;
 
 public interface OrderService {
     OrderResponse createOrder(OrderRequest orderRequest);
+
 }
