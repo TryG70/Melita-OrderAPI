@@ -14,19 +14,19 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class MQConfig {
 
-    public static final String ORDER_QUEUE = "order-queue";
-    public static final String ORDER_EXCHANGE = "order-exchange";
-    public static final String ORDER_ROUTING_KEY = "order-routing-key";
+    public static final String ORDER_APPROVAL_QUEUE = "order-queue";
+    public static final String ORDER_APPROVAL_EXCHANGE = "order-approval-exchange";
+    public static final String ORDER_APPROVAL_ROUTING_KEY = "order-approval-routing-key";
 
     @Bean
     public Queue orderQueue() {
-        return new Queue(ORDER_QUEUE);
+        return new Queue(ORDER_APPROVAL_QUEUE);
     }
 
 
     @Bean
     public TopicExchange orderExchange() {
-        return new TopicExchange(ORDER_EXCHANGE);
+        return new TopicExchange(ORDER_APPROVAL_EXCHANGE);
     }
 
     @Bean
@@ -34,8 +34,9 @@ public class MQConfig {
         return BindingBuilder
                 .bind(orderQueue)
                 .to(orderExchange)
-                .with(ORDER_ROUTING_KEY);
+                .with(ORDER_APPROVAL_ROUTING_KEY);
     }
+
 
     @Bean
     public MessageConverter messageConverter() {
@@ -44,7 +45,6 @@ public class MQConfig {
 
         return new Jackson2JsonMessageConverter(mapper);
 
-//        return new Jackson2JsonMessageConverter();
 
     }
 
