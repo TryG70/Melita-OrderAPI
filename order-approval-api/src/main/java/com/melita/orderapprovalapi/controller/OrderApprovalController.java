@@ -1,6 +1,7 @@
 package com.melita.orderapprovalapi.controller;
 
 import com.melita.orderapprovalapi.configuration.ApprovalMQConfig;
+import com.melita.orderapprovalapi.response.OrderResponse;
 import com.melita.orderapprovalapi.service.OrderService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,17 +21,23 @@ public class OrderApprovalController {
 
 
     @PostMapping(value = "/approved/{id}")
-    public String approveOrder(@PathVariable("id") Long id) {
+    public OrderResponse approveOrder(@PathVariable("id") Long id) {
         log.info("Approve Order with Id: {}", id);
-        rabbitTemplate.convertAndSend(ApprovalMQConfig.ORDER_APPROVAL_EXCHANGE, ApprovalMQConfig.ORDER_APPROVAL_ROUTING_KEY, orderService.approveOrder(id));
-        return "Order Approved. Published to RabbitMQ";
+
+        OrderResponse orderResponse = orderService.approveOrder(id);
+        rabbitTemplate.convertAndSend(ApprovalMQConfig.ORDER_APPROVAL_EXCHANGE, ApprovalMQConfig.ORDER_APPROVAL_ROUTING_KEY, orderResponse);
+//        return "Order Approved. Published to RabbitMQ";
+        return orderResponse;
     }
 
 
     @PostMapping(value = "/declined/{id}")
-    public String declineOrder(@PathVariable("id") Long id) {
+    public OrderResponse declineOrder(@PathVariable("id") Long id) {
         log.info("Approve Order with Id: {}", id);
-        rabbitTemplate.convertAndSend(ApprovalMQConfig.ORDER_APPROVAL_EXCHANGE, ApprovalMQConfig.ORDER_APPROVAL_ROUTING_KEY, orderService.declineOrder(id));
-        return "Order Cancelled. Published to RabbitMQ";
+
+        OrderResponse orderResponse = orderService.declineOrder(id);
+        rabbitTemplate.convertAndSend(ApprovalMQConfig.ORDER_APPROVAL_EXCHANGE, ApprovalMQConfig.ORDER_APPROVAL_ROUTING_KEY, orderResponse);
+//        return "Order Cancelled. Published to RabbitMQ";
+        return orderResponse;
     }
 }
