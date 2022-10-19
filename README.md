@@ -9,33 +9,56 @@ the Service Oriented Architecture.
 
 - Java
 - Maven
-- Kafka
-- Docker
-- Apache Poi
+- RabbitMQ
+- MySQL
+- Spring Boot
+- Spring Cloud
+- Spring Data JPA
+- Eureka
 
 ### Requirements
 
 You need the following to build and run the application:
 
-- [JDK 11](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html)
-- [Maven 3.8.1](https://maven.apache.org) (This is the build tool used.)
-- [Docker](https://www.docker.com/products/docker-desktop/)
+- [JDK 17](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html)
+- [Maven 3.8.6](https://maven.apache.org) (This is the build tool used.)
+
+[//]: # (- [Docker]&#40;https://www.docker.com/products/docker-desktop/&#41;)
 
 ## How to run Application(s)
-### step 1 - clone project with Terminal from [here](https://github.com/foyiogu/mintyn-inventory-report-management.git)
+### step 1 - clone project with Terminal from [here](https://github.com/TryG70/Melita-OrderAPI.git)
 
 ```
-git clone https://github.com/foyiogu/mintyn-inventory-report-management.git
+git clone https://github.com/TryG70/Melita-OrderAPI.git
 ```
 
 ### step 2 - move into the project directory
 ```
-cd mintyn-inventory-report-management/
+cd order-api/
 ```
 
-### step 3 - Open the mintyn-inventory-report-management Folder in an IDE, As a maven Project.
+### step 3 - Open the order-api Folder in an IDE, As a maven Project.
 
-### step 4 - Generate the .jar files with Terminal
+### step 4 - Run the eureka-server application module first 
+
+```
+cd eureka-server/
+``` 
+```
+mvn spring-boot:run
+```
+### step 5 - To run the other modules, Run the following commands in the following order just as the eureka server was run.
+
+- api-gateway
+- config-server
+- order-taking-api
+- order-approval-api
+- order-fulfillment-api
+- mail-service
+
+
+
+### step 6 - Generate the .jar files with Terminal
 
 ```
 mvn clean install 
@@ -45,22 +68,15 @@ OR
 ./mvnw clean install
 ```
 
-### step 5 - Once Docker is Open and connected, Get the Images for all external programs used - Postgres, PGAdmin, Zookeeper, Kafka, by running in Terminal:
+## Here's the Link to the externalized configuration for Spring Cloud Config [here](https://github.com/TryG70/Melita-Config-File.git)
 ```
-docker-compose up -d
-```
-OR
-```
-docker compose up -d
+git clone https://github.com/TryG70/Melita-Config-File.git
 ```
 
-### step 5 - Run The OrderReportApplication and the SalesInventoryApplication with The IDE
 
-## Swagger Documentation Can Be Found Below
-- For Sales/Inventory [here](http://localhost:8080/swagger-ui/)
-- For Order Report [here](http://localhost:8081/swagger-ui/)
+## Postman Collection forIntegration Tests
+- Melita Order API [here](https://www.getpostman.com/collections/7595dcb52b220242cb95)
 
-## When the order report endpoint is used, An Excel Spreadsheet is Generated for the report view
 
 ## Running The Tests with Maven
 
