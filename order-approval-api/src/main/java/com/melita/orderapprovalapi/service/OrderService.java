@@ -5,7 +5,7 @@ import com.melita.orderapprovalapi.response.OrderResponse;
 
 public interface OrderService {
 
-    void receiveOrder(Order order);
+    String receiveOrder(OrderResponse orderResponse);
 
     OrderResponse approveOrder(Long id);
 
