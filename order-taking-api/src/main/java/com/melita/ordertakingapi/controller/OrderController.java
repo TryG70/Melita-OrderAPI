@@ -4,6 +4,7 @@ import com.melita.ordertakingapi.configuration.EnvironmentConfig;
 import com.melita.ordertakingapi.configuration.MQConfig;
 import com.melita.ordertakingapi.exception.NotAuthorizedException;
 import com.melita.ordertakingapi.request.OrderRequest;
+import com.melita.ordertakingapi.response.OrderResponse;
 import com.melita.ordertakingapi.service.OrderService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,16 +32,20 @@ public class OrderController {
 
 
     @PostMapping(value = "/create", headers = {"Authorization"})
-    public String createOrder(@Valid @RequestBody OrderRequest orderRequest, HttpServletRequest request) {
+    public OrderResponse createOrder(@Valid @RequestBody OrderRequest orderRequest, HttpServletRequest request) {
         String header = request.getHeader("Authorization");
         log.info("header {}", header);
         log.info("env {}", environmentConfig.getAuthToken());
+
 
         if (!header.equals(environmentConfig.getAuthToken())) {
             throw new NotAuthorizedException("Invalid Authorization Token");
         }
         log.info("Order request received: {}", orderRequest);
-        rabbitTemplate.convertAndSend(MQConfig.ORDER_EXCHANGE, MQConfig.ORDER_ROUTING_KEY, orderService.createOrder(orderRequest));
-        return "Published to RabbitMQ";
+
+        OrderResponse orderResponse = orderService.createOrder(orderRequest);
+        rabbitTemplate.convertAndSend(MQConfig.ORDER_EXCHANGE, MQConfig.ORDER_ROUTING_KEY, orderResponse);
+//        return "Published to RabbitMQ";
+        return orderResponse;
     }
 }
