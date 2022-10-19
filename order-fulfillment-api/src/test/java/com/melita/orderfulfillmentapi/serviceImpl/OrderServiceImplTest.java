@@ -37,7 +37,7 @@ class OrderServiceImplTest {
                 .installationDates("19/10/2022 07")
                 .product("internet_1gbps")
                 .productPackage("Internet 1GBps")
-                .isApproved("true")
+                .isApproved(true)
                 .build();
 
         var actual = orderServiceImpl.fulfillOrder(orderResponse);

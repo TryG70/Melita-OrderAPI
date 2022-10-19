@@ -7,7 +7,6 @@ import javax.persistence.*;
 
 
 @Data
-@Getter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -25,5 +24,5 @@ public class Order {
     private String installationDates;
     private String product;
     private String productPackage;
-    private String isApproved;
+    private Boolean isApproved;
 }

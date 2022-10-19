@@ -45,7 +45,7 @@ public class OrderController {
 
         OrderResponse orderResponse = orderService.createOrder(orderRequest);
         rabbitTemplate.convertAndSend(MQConfig.ORDER_EXCHANGE, MQConfig.ORDER_ROUTING_KEY, orderResponse);
-//        return "Published to RabbitMQ";
+
         return orderResponse;
     }
 }

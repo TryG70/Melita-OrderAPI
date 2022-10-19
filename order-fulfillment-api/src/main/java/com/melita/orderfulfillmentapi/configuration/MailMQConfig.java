@@ -41,7 +41,7 @@ public class MailMQConfig {
     @Bean
     public MessageConverter messageConverter() {
 
-        ObjectMapper mapper = new ObjectMapper().findAndRegisterModules().registerModule(new ParanamerModule());;
+        ObjectMapper mapper = new ObjectMapper().findAndRegisterModules().registerModule(new ParanamerModule());
 
         return new Jackson2JsonMessageConverter(mapper);
 

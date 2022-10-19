@@ -6,7 +6,6 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Data
-@Getter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -24,5 +23,5 @@ public class Order {
     private LocalDateTime installationDates;
     private String product;
     private String productPackage;
-    private String isApproved;
+    private Boolean isApproved;
 }

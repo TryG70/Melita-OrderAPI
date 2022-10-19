@@ -47,7 +47,7 @@ public class OrderServiceImpl implements OrderService {
                 .installationDates(order.getInstallationDates())
                 .product(order.getProduct())
                 .productPackage(order.getProductPackage())
-                .isApproved("true")
+                .isApproved(true)
                 .build();
     }
 
@@ -64,7 +64,7 @@ public class OrderServiceImpl implements OrderService {
                 .installationDates(order.getInstallationDates())
                 .product(order.getProduct())
                 .productPackage(order.getProductPackage())
-                .isApproved("false")
+                .isApproved(false)
                 .build();
     }
 

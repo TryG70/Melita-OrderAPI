@@ -13,7 +13,7 @@ import static org.springframework.http.HttpStatus.NOT_FOUND;
 public class ExceptionController extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(OrderNotFoundException.class)
-    public ResponseEntity<Object> OrderNotFound(OrderNotFoundException exception) {
+    public ResponseEntity<Object> orderNotFound(OrderNotFoundException exception) {
 
         ExceptionResponse exceptionResponse = new ExceptionResponse(exception.getMessage(), NOT_FOUND);
         return new ResponseEntity<>(exceptionResponse, NOT_FOUND);

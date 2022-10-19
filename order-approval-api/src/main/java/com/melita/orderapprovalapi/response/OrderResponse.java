@@ -3,8 +3,6 @@ package com.melita.orderapprovalapi.response;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -12,8 +10,6 @@ import java.time.LocalDateTime;
 
 @Builder
 @Data
-@Getter
-@Setter
 public class OrderResponse implements Serializable {
 
     private String customerName;
@@ -24,5 +20,5 @@ public class OrderResponse implements Serializable {
     private LocalDateTime installationDates;
     private String product;
     private String productPackage;
-    private String isApproved;
+    private Boolean isApproved;
 }

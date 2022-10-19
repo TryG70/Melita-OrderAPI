@@ -26,7 +26,7 @@ public class OrderApprovalController {
 
         OrderResponse orderResponse = orderService.approveOrder(id);
         rabbitTemplate.convertAndSend(ApprovalMQConfig.ORDER_APPROVAL_EXCHANGE, ApprovalMQConfig.ORDER_APPROVAL_ROUTING_KEY, orderResponse);
-//        return "Order Approved. Published to RabbitMQ";
+
         return orderResponse;
     }
 
@@ -37,7 +37,7 @@ public class OrderApprovalController {
 
         OrderResponse orderResponse = orderService.declineOrder(id);
         rabbitTemplate.convertAndSend(ApprovalMQConfig.ORDER_APPROVAL_EXCHANGE, ApprovalMQConfig.ORDER_APPROVAL_ROUTING_KEY, orderResponse);
-//        return "Order Cancelled. Published to RabbitMQ";
+
         return orderResponse;
     }
 }

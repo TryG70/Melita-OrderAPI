@@ -1,8 +1,7 @@
 package com.melita.ordertakingapi.request;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.google.gson.annotations.SerializedName;
+
 import lombok.*;
 
 import javax.validation.constraints.Pattern;

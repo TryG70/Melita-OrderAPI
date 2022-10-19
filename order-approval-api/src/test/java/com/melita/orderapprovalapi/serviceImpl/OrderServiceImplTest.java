@@ -44,7 +44,7 @@ class OrderServiceImplTest {
                 .installationDates(time)
                 .product("internet_1gbps")
                 .productPackage("Internet 1GBps")
-                .isApproved("false")
+                .isApproved(false)
                 .build();
 
 
@@ -62,7 +62,7 @@ class OrderServiceImplTest {
                 .installationDates(time)
                 .product("internet_1gbps")
                 .productPackage("Internet 1GBps")
-                .isApproved("false")
+                .isApproved(false)
                 .build();
 
         String status = "Order received successfully";
@@ -82,7 +82,7 @@ class OrderServiceImplTest {
                 .installationDates(time)
                 .product("internet_1gbps")
                 .productPackage("Internet 1GBps")
-                .isApproved("true")
+                .isApproved(true)
                 .build();
 
         var actual = orderServiceImpl.approveOrder(1L);
@@ -105,7 +105,7 @@ class OrderServiceImplTest {
                 .installationDates(time)
                 .product("internet_1gbps")
                 .productPackage("Internet 1GBps")
-                .isApproved("false")
+                .isApproved(false)
                 .build();
 
         var actual = orderServiceImpl.declineOrder(1L);

@@ -35,7 +35,7 @@ public class OrderListener {
 
 
 
-        if (orderResponse.getIsApproved().equals("true")) {
+        if (orderResponse.getIsApproved().equals(true)) {
 
             Order order = orderService.fulfillOrder(orderResponse);
 
