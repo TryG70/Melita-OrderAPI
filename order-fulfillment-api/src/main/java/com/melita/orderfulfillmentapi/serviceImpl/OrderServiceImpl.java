@@ -2,6 +2,7 @@ package com.melita.orderfulfillmentapi.serviceImpl;
 
 import com.melita.orderfulfillmentapi.entity.Order;
 import com.melita.orderfulfillmentapi.repository.OrderRepository;
+import com.melita.orderfulfillmentapi.response.OrderResponse;
 import com.melita.orderfulfillmentapi.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,8 +18,21 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void fulfillOrder(Order order) {
+    public Order fulfillOrder(OrderResponse orderResponse) {
+
+        Order order = Order.builder()
+                .customerName(orderResponse.getCustomerName())
+                .customerEmail(orderResponse.getCustomerEmail())
+                .installationAddress(orderResponse.getInstallationAddress())
+                .installationDates(orderResponse.getInstallationDates())
+                .product(orderResponse.getProduct())
+                .productPackage(orderResponse.getProductPackage())
+                .isApproved(orderResponse.getIsApproved())
+                .build();
 
         orderRepository.save(order);
+
+        return order;
+
     }
 }
