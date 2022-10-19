@@ -29,10 +29,10 @@ public class ApprovalMQConfig {
     }
 
     @Bean
-    public Binding bindingApproval(Queue orderQueue, TopicExchange orderExchange) {
+    public Binding bindingApproval(Queue orderApprovalQueue, TopicExchange orderApprovalExchange) {
         return BindingBuilder
-                .bind(orderQueue)
-                .to(orderExchange)
+                .bind(orderApprovalQueue)
+                .to(orderApprovalExchange)
                 .with(ORDER_APPROVAL_ROUTING_KEY);
     }
 
