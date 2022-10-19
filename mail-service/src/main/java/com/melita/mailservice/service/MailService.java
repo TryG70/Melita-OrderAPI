@@ -30,13 +30,13 @@ public class MailService {
         MimeMessageHelper mimeMessageHelper = new MimeMessageHelper(mailMessage, true);
 
 
-        mimeMessageHelper.setFrom("rewardyourteacher@gmail.com");
+        mimeMessageHelper.setFrom("melitaltd.group@gmail.com");
         mimeMessageHelper.setTo(email);
         mimeMessageHelper.setSubject(mailSubject);
         mimeMessageHelper.setText(emailBody);
 
-        FileDataSource fileDataSource = new FileDataSource("src/main/resources/static/email.png");
-        mimeMessageHelper.addAttachment("email.png", fileDataSource);
+        FileDataSource fileDataSource = new FileDataSource("mail-service/src/main/resources/melitaLogo.png");
+        mimeMessageHelper.addAttachment("melitaLogo.png", fileDataSource);
 
 
         javaMailSender.send(mailMessage);
