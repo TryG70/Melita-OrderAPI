@@ -19,9 +19,20 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void receiveOrder(Order order) {
+    public String receiveOrder(OrderResponse orderResponse) {
+
+        Order order = Order.builder()
+                .customerName(orderResponse.getCustomerName())
+                .customerEmail(orderResponse.getCustomerEmail())
+                .installationAddress(orderResponse.getInstallationAddress())
+                .installationDates(orderResponse.getInstallationDates())
+                .product(orderResponse.getProduct())
+                .productPackage(orderResponse.getProductPackage())
+                .build();
 
         orderRepository.save(order);
+
+        return "Order received successfully";
     }
 
     @Override
