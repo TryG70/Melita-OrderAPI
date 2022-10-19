@@ -1,4 +1,4 @@
-# mintyn-inventory-report-management
+# Melita OrderAPI
 
 This is a Sales/Inventory-Report Distributed system Application
 
@@ -74,7 +74,7 @@ git clone https://github.com/TryG70/Melita-Config-File.git
 ```
 
 
-## Postman Collection forIntegration Tests
+## Postman Collection for Integration Tests
 - Melita Order API [here](https://www.getpostman.com/collections/7595dcb52b220242cb95)
 
 
@@ -87,19 +87,19 @@ mvn <option> test
 - If "mvn" doesn't work, please use "./mvnw".
 
 #### ReportService Test
-- All Tests in ReportServiceImplTest can be run using
+- All Tests in order-approval-api module can be run using
 ```
-mvn -Dtest=ReportServiceImplTest test
+mvn -Dtest=OrderServiceImplTest test
 ```
 
 #### OrderService Test
-- All Tests in OrderServiceImplTest can be run using
+- All Tests in order-fulfillment-api can be run using
 ```
 mvn -Dtest=OrderServiceImplTest test
 ```
 
 #### ProductService Test
-- All Tests in ProductServiceImplTest can be run using
+- All Tests in order-taking-api can be run using
 ```
-mvn -Dtest=ProductServiceImplTest test
+mvn -Dtest=OrderServiceImplTest test
 ```
