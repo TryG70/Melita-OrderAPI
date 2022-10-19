@@ -69,6 +69,7 @@ OR
 ```
 
 ## Here's the Link to the externalized configuration for Spring Cloud Config [here](https://github.com/TryG70/Melita-Config-File.git)
+The config file contains the auth-token for the order-taking-api endpoint
 ```
 git clone https://github.com/TryG70/Melita-Config-File.git
 ```
