@@ -6,9 +6,9 @@ spring:
     name: order-approval-api
 
   datasource:
-    url: jdbc:mysql://localhost:3306/melita-order-approval
-    username: root
-    password: Chiziterealaoma7
+    url: jdbc:mysql://localhost:3306/{}
+    username: {}
+    password: {}
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   rabbitmq:
