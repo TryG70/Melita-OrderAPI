@@ -23,14 +23,14 @@ public class MailListener {
     public void listen(OrderDetails orderDetails) throws MessagingException {
 
         String email = orderDetails.getCustomerEmail();
-        String mailSubject = "Order Details";
+        String mailSubject = "Order Details - " + orderDetails.getCustomerName();
         String emailBody = "Kindly find the details of the Customer Order"  + "\n"
                 + "Customer Name: " + orderDetails.getCustomerName() + "\n"
                 + "Customer Email: " + orderDetails.getCustomerEmail() + "\n"
                 + "Customer Installation Address: " + orderDetails.getInstallationAddress() + "\n"
                 + "Customer Installation Date: " + orderDetails.getInstallationDates() + "\n"
-                + "Customer Installation Date: " + orderDetails.getProduct() + "\n"
-                + "Customer Installation Date: " + orderDetails.getProductPackage() + "\n";
+                + "Ordered Product: " + orderDetails.getProduct() + "\n"
+                + "Product Package: " + orderDetails.getProductPackage() + "\n";
 
         mailService.sendEmail(email, mailSubject, emailBody);
 
