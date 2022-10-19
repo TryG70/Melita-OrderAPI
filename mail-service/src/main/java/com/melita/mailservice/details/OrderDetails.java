@@ -19,9 +19,7 @@ public class OrderDetails implements Serializable {
     private String customerName;
     private String customerEmail;
     private String installationAddress;
-
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH")
-    private LocalDateTime installationDates;
+    private String installationDates;
     private String product;
     private String productPackage;
     private String isApproved;
