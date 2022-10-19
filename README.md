@@ -1,9 +1,10 @@
 # Melita OrderAPI
 
-This is a Sales/Inventory-Report Distributed system Application
+An authenticated Order Taking API stack that is exposed to 3rd party endpoints (example an ERP system) selling products on behalf of Melita.
 
-It is built with the combination of both the Event Driven Microservices Architecture and
-the Service Oriented Architecture.
+On accepting the order it publishes a messaging event to a RabbitMQ topic for Melita's Ordering Fulfilment system and Care systems to pick it up.
+
+Provided APIs so that certain configurable products need to be approved by an agent before submitting the order to the Order Fulfilment system
 
 ### Technologies
 
