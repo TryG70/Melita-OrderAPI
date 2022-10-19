@@ -33,24 +33,16 @@ public class OrderListener {
 
         log.info("Received message from approval queue: {}", orderResponse);
 
+
+
         if (orderResponse.getIsApproved().equals("true")) {
 
-            Order order = Order.builder()
-                    .customerName(orderResponse.getCustomerName())
-                    .customerEmail(orderResponse.getCustomerEmail())
-                    .installationAddress(orderResponse.getInstallationAddress())
-                    .installationDates(orderResponse.getInstallationDates())
-                    .product(orderResponse.getProduct())
-                    .productPackage(orderResponse.getProductPackage())
-                    .isApproved(orderResponse.getIsApproved())
-                    .build();
+            Order order = orderService.fulfillOrder(orderResponse);
 
-            orderService.fulfillOrder(order);
-
-            rabbitTemplate.convertAndSend(MailMQConfig.ORDER_MAIL_EXCHANGE, MailMQConfig.ORDER_MAIL_ROUTING_KEY, orderResponse);
-
+            rabbitTemplate.convertAndSend(MailMQConfig.ORDER_MAIL_EXCHANGE, MailMQConfig.ORDER_MAIL_ROUTING_KEY, order);
         } else {
             throw new OrderNotApprovedException("Order not approved");
         }
+
     }
 }
