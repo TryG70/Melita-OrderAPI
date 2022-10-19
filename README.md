@@ -87,19 +87,19 @@ mvn <option> test
 ```
 - If "mvn" doesn't work, please use "./mvnw".
 
-#### ReportService Test
+#### order-approval-api, OrderServiceImpl Test
 - All Tests in order-approval-api module can be run using
 ```
 mvn -Dtest=OrderServiceImplTest test
 ```
 
-#### OrderService Test
+#### order-fulfillment-api, OrderServiceImpl Test
 - All Tests in order-fulfillment-api can be run using
 ```
 mvn -Dtest=OrderServiceImplTest test
 ```
 
-#### ProductService Test
+#### order-taking-api, OrderServiceImpl Test
 - All Tests in order-taking-api can be run using
 ```
 mvn -Dtest=OrderServiceImplTest test
