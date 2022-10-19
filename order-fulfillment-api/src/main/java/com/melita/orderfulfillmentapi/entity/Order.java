@@ -1,10 +1,10 @@
 package com.melita.orderfulfillmentapi.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+
 import lombok.*;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+
 
 @Data
 @Getter
@@ -22,7 +22,7 @@ public class Order {
     private String customerName;
     private String customerEmail;
     private String installationAddress;
-    private LocalDateTime installationDates;
+    private String installationDates;
     private String product;
     private String productPackage;
     private String isApproved;
