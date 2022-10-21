@@ -13,7 +13,7 @@ public class OrderResponse {
     private String customerName;
     private String customerEmail;
     private String installationAddress;
-    private LocalDateTime installationDates;
+    private LocalDateTime installationDate;
     private String product;
     private String productPackage;
 }
