@@ -34,7 +34,7 @@ class OrderServiceImplTest {
                 .customerName("TryGod")
                 .customerEmail("trygodnwakwasi@gmail.com")
                 .installationAddress("House 3, 4th Avenue, Gwarinpa")
-                .installationDates(time)
+                .installationDate(time)
                 .product("internet_1gbps")
                 .build();
 
@@ -48,7 +48,7 @@ class OrderServiceImplTest {
                 .customerName("TryGod")
                 .customerEmail("trygodnwakwasi@gmail.com")
                 .installationAddress("House 3, 4th Avenue, Gwarinpa")
-                .installationDates(time)
+                .installationDate(time)
                 .product("internet_1gbps")
                 .productPackage("Internet 1GBps")
                 .build();
@@ -58,7 +58,7 @@ class OrderServiceImplTest {
         assertEquals(orderResponse.getCustomerName(), actual.getCustomerName());
         assertEquals(orderResponse.getCustomerEmail(), actual.getCustomerEmail());
         assertEquals(orderResponse.getInstallationAddress(), actual.getInstallationAddress());
-        assertEquals(orderResponse.getInstallationDates(), actual.getInstallationDates());
+        assertEquals(orderResponse.getInstallationDate(), actual.getInstallationDate());
         assertEquals(orderResponse.getProduct(), actual.getProduct());
         assertEquals(orderResponse.getProductPackage(), actual.getProductPackage());
 
@@ -71,7 +71,7 @@ class OrderServiceImplTest {
                 .customerName("Amanda")
                 .customerEmail("amandaayeni34.com")
                 .installationAddress("House 10, 5th Avenue, Victoria Island")
-                .installationDates(LocalDateTime.now())
+                .installationDate(LocalDateTime.now())
                 .product("tv_90_channels")
                 .productPackage("TV with 90 Channels")
                 .build();
@@ -81,7 +81,7 @@ class OrderServiceImplTest {
         assertNotEquals(orderResponse.getCustomerName(), actual.getCustomerName());
         assertNotEquals(orderResponse.getCustomerEmail(), actual.getCustomerEmail());
         assertNotEquals(orderResponse.getInstallationAddress(), actual.getInstallationAddress());
-        assertNotEquals(orderResponse.getInstallationDates(), actual.getInstallationDates());
+        assertNotEquals(orderResponse.getInstallationDate(), actual.getInstallationDate());
         assertNotEquals(orderResponse.getProduct(), actual.getProduct());
         assertNotEquals(orderResponse.getProductPackage(), actual.getProductPackage());
 
