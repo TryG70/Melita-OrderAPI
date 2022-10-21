@@ -14,7 +14,7 @@ import static org.springframework.http.HttpStatus.EXPECTATION_FAILED;
 public class ExceptionController extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(OrderNotApprovedException.class)
-    public ResponseEntity<Object> OrderNotApproved(OrderNotApprovedException exception) {
+    public ResponseEntity<Object> orderNotApproved(OrderNotApprovedException exception) {
 
         ExceptionResponse exceptionResponse = new ExceptionResponse(exception.getMessage(), EXPECTATION_FAILED);
         return new ResponseEntity<>(exceptionResponse, EXPECTATION_FAILED);
