@@ -36,7 +36,7 @@ public class OrderServiceImpl implements OrderService {
             default -> orderResponse.setProductPackage("Invalid Product");
         }
 
-        //todo: invalid product exception
+
         if (orderResponse.getProductPackage().equals("Invalid Product")) {
             throw new InvalidProductException("Invalid Product");
         }
