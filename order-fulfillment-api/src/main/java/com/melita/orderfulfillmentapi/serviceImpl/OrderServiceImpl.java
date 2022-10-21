@@ -24,7 +24,7 @@ public class OrderServiceImpl implements OrderService {
                 .customerName(orderResponse.getCustomerName())
                 .customerEmail(orderResponse.getCustomerEmail())
                 .installationAddress(orderResponse.getInstallationAddress())
-                .installationDates(orderResponse.getInstallationDates())
+                .installationDate(orderResponse.getInstallationDate())
                 .product(orderResponse.getProduct())
                 .productPackage(orderResponse.getProductPackage())
                 .isApproved(orderResponse.getIsApproved())
