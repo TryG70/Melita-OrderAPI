@@ -35,7 +35,7 @@ class OrderServiceImplTest {
                 .customerName("TryGod")
                 .customerEmail("trygodnwakwasi@gmail.com")
                 .installationAddress("House 3, 4th Avenue, Gwarinpa")
-                .installationDates("19/10/2022 07")
+                .installationDate("19/10/2022 07")
                 .product("internet_1gbps")
                 .productPackage("Internet 1GBps")
                 .isApproved(true)
@@ -47,7 +47,7 @@ class OrderServiceImplTest {
                 .customerName("TryGod")
                 .customerEmail("trygodnwakwasi@gmail.com")
                 .installationAddress("House 3, 4th Avenue, Gwarinpa")
-                .installationDates("19/10/2022 07")
+                .installationDate("19/10/2022 07")
                 .product("internet_1gbps")
                 .productPackage("Internet 1GBps")
                 .isApproved(true)
@@ -66,7 +66,7 @@ class OrderServiceImplTest {
                 .customerName("TryGod")
                 .customerEmail("trygodnwakwasi@gmail.com")
                 .installationAddress("House 3, 4th Avenue, Gwarinpa")
-                .installationDates("19/10/2022 07")
+                .installationDate("19/10/2022 07")
                 .product("internet_1gbps")
                 .productPackage("Internet 1GBps")
                 .isApproved(true)
@@ -80,7 +80,7 @@ class OrderServiceImplTest {
         assertEquals(savedOrder.getCustomerName(), actual.getCustomerName());
         assertEquals(savedOrder.getCustomerEmail(), actual.getCustomerEmail());
         assertEquals(savedOrder.getInstallationAddress(), actual.getInstallationAddress());
-        assertEquals(savedOrder.getInstallationDates(), actual.getInstallationDates());
+        assertEquals(savedOrder.getInstallationDate(), actual.getInstallationDate());
         assertEquals(savedOrder.getProduct(), actual.getProduct());
         assertEquals(savedOrder.getProductPackage(), actual.getProductPackage());
         assertEquals(savedOrder.getIsApproved(), actual.getIsApproved());
