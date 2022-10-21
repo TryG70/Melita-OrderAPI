@@ -15,6 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 class OrderServiceImplTest {
 
+
     @InjectMocks
     OrderServiceImpl orderServiceImpl;
 
@@ -41,7 +42,7 @@ class OrderServiceImplTest {
     }
 
     @Test
-    void createOrder() {
+    void validCreateOrder() {
 
         OrderResponse orderResponse = OrderResponse.builder()
                 .customerName("TryGod")
@@ -60,6 +61,29 @@ class OrderServiceImplTest {
         assertEquals(orderResponse.getInstallationDates(), actual.getInstallationDates());
         assertEquals(orderResponse.getProduct(), actual.getProduct());
         assertEquals(orderResponse.getProductPackage(), actual.getProductPackage());
+
+    }
+
+    @Test
+    void falseCreateOrder() {
+
+        OrderResponse orderResponse = OrderResponse.builder()
+                .customerName("Amanda")
+                .customerEmail("amandaayeni34.com")
+                .installationAddress("House 10, 5th Avenue, Victoria Island")
+                .installationDates(LocalDateTime.now())
+                .product("tv_90_channels")
+                .productPackage("TV with 90 Channels")
+                .build();
+
+        var actual = orderServiceImpl.createOrder(orderRequest);
+
+        assertNotEquals(orderResponse.getCustomerName(), actual.getCustomerName());
+        assertNotEquals(orderResponse.getCustomerEmail(), actual.getCustomerEmail());
+        assertNotEquals(orderResponse.getInstallationAddress(), actual.getInstallationAddress());
+        assertNotEquals(orderResponse.getInstallationDates(), actual.getInstallationDates());
+        assertNotEquals(orderResponse.getProduct(), actual.getProduct());
+        assertNotEquals(orderResponse.getProductPackage(), actual.getProductPackage());
 
     }
 }
