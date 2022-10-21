@@ -30,9 +30,9 @@ public class OrderServiceImpl implements OrderService {
                 .isApproved(orderResponse.getIsApproved())
                 .build();
 
-        orderRepository.save(order);
 
-        return order;
+
+        return orderRepository.save(order);
 
     }
 }
