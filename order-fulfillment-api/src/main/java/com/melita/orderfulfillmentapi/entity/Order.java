@@ -29,7 +29,7 @@ public class Order {
     private String installationAddress;
 
     @NotNull
-    private String installationDates;
+    private String installationDate;
 
     @NotNull
     private String product;
