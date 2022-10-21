@@ -1,6 +1,7 @@
 package com.melita.orderapprovalapi.serviceImpl;
 
 import com.melita.orderapprovalapi.entity.Order;
+import com.melita.orderapprovalapi.exception.OrderNotFoundException;
 import com.melita.orderapprovalapi.repository.OrderRepository;
 import com.melita.orderapprovalapi.response.OrderResponse;
 import org.junit.jupiter.api.BeforeEach;
@@ -14,6 +15,7 @@ import java.time.Month;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
@@ -37,14 +39,12 @@ class OrderServiceImplTest {
         time = LocalDateTime.of(2022, Month.OCTOBER, 19, 7, 0, 0, 0);
 
         order = Order.builder()
-                .id(1L)
                 .customerName("TryGod")
                 .customerEmail("trygodnwakwasi@gmail.com")
                 .installationAddress("House 3, 4th Avenue, Gwarinpa")
                 .installationDates(time)
                 .product("internet_1gbps")
                 .productPackage("Internet 1GBps")
-                .isApproved(false)
                 .build();
 
 
@@ -62,13 +62,13 @@ class OrderServiceImplTest {
                 .installationDates(time)
                 .product("internet_1gbps")
                 .productPackage("Internet 1GBps")
-                .isApproved(false)
                 .build();
 
         String status = "Order received successfully";
 
         var actual = orderServiceImpl.receiveOrder(orderResponse);
 
+        verify(orderRepository).save(order);
         assertEquals(status, actual);
     }
 
@@ -132,4 +132,11 @@ class OrderServiceImplTest {
         assertEquals(order.getIsApproved(), actual.getIsApproved());
 
     }
+
+    @Test
+    void failedFindOrder() {
+
+        assertThrows(OrderNotFoundException.class, () -> orderServiceImpl.findOrder(2L));
+    }
+
 }
