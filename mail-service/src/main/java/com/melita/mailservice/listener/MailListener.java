@@ -28,7 +28,7 @@ public class MailListener {
                 + "Customer Name: " + orderDetails.getCustomerName() + "\n"
                 + "Customer Email: " + orderDetails.getCustomerEmail() + "\n"
                 + "Customer Installation Address: " + orderDetails.getInstallationAddress() + "\n"
-                + "Customer Installation Date: " + orderDetails.getInstallationDates() + "\n"
+                + "Customer Installation Date: " + orderDetails.getInstallationDate() + "\n"
                 + "Ordered Product: " + orderDetails.getProduct() + "\n"
                 + "Product Package: " + orderDetails.getProductPackage() + "\n";
 
