@@ -17,7 +17,7 @@ public class OrderResponse implements Serializable {
     private String installationAddress;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH")
-    private LocalDateTime installationDates;
+    private LocalDateTime installationDate;
     private String product;
     private String productPackage;
     private Boolean isApproved;
