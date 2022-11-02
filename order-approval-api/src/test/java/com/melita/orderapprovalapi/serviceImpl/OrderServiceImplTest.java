@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDateTime;
@@ -42,7 +43,7 @@ class OrderServiceImplTest {
                 .customerName("TryGod")
                 .customerEmail("trygodnwakwasi@gmail.com")
                 .installationAddress("House 3, 4th Avenue, Gwarinpa")
-                .installationDates(time)
+                .installationDate(time)
                 .product("internet_1gbps")
                 .productPackage("Internet 1GBps")
                 .build();
@@ -59,7 +60,7 @@ class OrderServiceImplTest {
                 .customerName("TryGod")
                 .customerEmail("trygodnwakwasi@gmail.com")
                 .installationAddress("House 3, 4th Avenue, Gwarinpa")
-                .installationDates(time)
+                .installationDate(time)
                 .product("internet_1gbps")
                 .productPackage("Internet 1GBps")
                 .build();
@@ -79,17 +80,18 @@ class OrderServiceImplTest {
                 .customerName("TryGod")
                 .customerEmail("trygodnwakwasi@gmail.com")
                 .installationAddress("House 3, 4th Avenue, Gwarinpa")
-                .installationDates(time)
+                .installationDate(time)
                 .product("internet_1gbps")
                 .productPackage("Internet 1GBps")
                 .isApproved(true)
                 .build();
 
         var actual = orderServiceImpl.approveOrder(1L);
+
         assertEquals(orderResponse.getCustomerName(), actual.getCustomerName());
         assertEquals(orderResponse.getCustomerEmail(), actual.getCustomerEmail());
         assertEquals(orderResponse.getInstallationAddress(), actual.getInstallationAddress());
-        assertEquals(orderResponse.getInstallationDates(), actual.getInstallationDates());
+        assertEquals(orderResponse.getInstallationDate(), actual.getInstallationDate());
         assertEquals(orderResponse.getProduct(), actual.getProduct());
         assertEquals(orderResponse.getProductPackage(), actual.getProductPackage());
         assertEquals(orderResponse.getIsApproved(), actual.getIsApproved());
@@ -102,17 +104,18 @@ class OrderServiceImplTest {
                 .customerName("TryGod")
                 .customerEmail("trygodnwakwasi@gmail.com")
                 .installationAddress("House 3, 4th Avenue, Gwarinpa")
-                .installationDates(time)
+                .installationDate(time)
                 .product("internet_1gbps")
                 .productPackage("Internet 1GBps")
                 .isApproved(false)
                 .build();
 
         var actual = orderServiceImpl.declineOrder(1L);
+
         assertEquals(orderResponse.getCustomerName(), actual.getCustomerName());
         assertEquals(orderResponse.getCustomerEmail(), actual.getCustomerEmail());
         assertEquals(orderResponse.getInstallationAddress(), actual.getInstallationAddress());
-        assertEquals(orderResponse.getInstallationDates(), actual.getInstallationDates());
+        assertEquals(orderResponse.getInstallationDate(), actual.getInstallationDate());
         assertEquals(orderResponse.getProduct(), actual.getProduct());
         assertEquals(orderResponse.getProductPackage(), actual.getProductPackage());
         assertEquals(orderResponse.getIsApproved(), actual.getIsApproved());
@@ -122,11 +125,13 @@ class OrderServiceImplTest {
     void findOrder() {
 
         var actual = orderServiceImpl.findOrder(1L);
+
+        verify(orderRepository, Mockito.atLeast(1)).findById(1L);
         assertEquals(order.getId(), actual.getId());
         assertEquals(order.getCustomerName(), actual.getCustomerName());
         assertEquals(order.getCustomerEmail(), actual.getCustomerEmail());
         assertEquals(order.getInstallationAddress(), actual.getInstallationAddress());
-        assertEquals(order.getInstallationDates(), actual.getInstallationDates());
+        assertEquals(order.getInstallationDate(), actual.getInstallationDate());
         assertEquals(order.getProduct(), actual.getProduct());
         assertEquals(order.getProductPackage(), actual.getProductPackage());
         assertEquals(order.getIsApproved(), actual.getIsApproved());
@@ -139,4 +144,54 @@ class OrderServiceImplTest {
         assertThrows(OrderNotFoundException.class, () -> orderServiceImpl.findOrder(2L));
     }
 
+    @Test
+    void trueBuildOrderResponse() {
+
+        orderResponse = OrderResponse.builder()
+                .customerName("TryGod")
+                .customerEmail("trygodnwakwasi@gmail.com")
+                .installationAddress("House 3, 4th Avenue, Gwarinpa")
+                .installationDate(time)
+                .product("internet_1gbps")
+                .productPackage("Internet 1GBps")
+                .isApproved(true)
+                .build();
+
+        var actual = orderServiceImpl.buildOrderResponse(true, 1L);
+
+        assertEquals(orderResponse.getCustomerName(), actual.getCustomerName());
+        assertEquals(orderResponse.getCustomerEmail(), actual.getCustomerEmail());
+        assertEquals(orderResponse.getInstallationAddress(), actual.getInstallationAddress());
+        assertEquals(orderResponse.getInstallationDate(), actual.getInstallationDate());
+        assertEquals(orderResponse.getProduct(), actual.getProduct());
+        assertEquals(orderResponse.getProductPackage(), actual.getProductPackage());
+        assertEquals(orderResponse.getIsApproved(), actual.getIsApproved());
+
+    }
+
+    @Test
+    void falseBuildOrderResponse() {
+
+
+        orderResponse = OrderResponse.builder()
+                .customerName("TryGod")
+                .customerEmail("trygodnwakwasi@gmail.com")
+                .installationAddress("House 3, 4th Avenue, Gwarinpa")
+                .installationDate(time)
+                .product("internet_1gbps")
+                .productPackage("Internet 1GBps")
+                .isApproved(false)
+                .build();
+
+        var actual = orderServiceImpl.buildOrderResponse(false, 1L);
+
+        assertEquals(orderResponse.getCustomerName(), actual.getCustomerName());
+        assertEquals(orderResponse.getCustomerEmail(), actual.getCustomerEmail());
+        assertEquals(orderResponse.getInstallationAddress(), actual.getInstallationAddress());
+        assertEquals(orderResponse.getInstallationDate(), actual.getInstallationDate());
+        assertEquals(orderResponse.getProduct(), actual.getProduct());
+        assertEquals(orderResponse.getProductPackage(), actual.getProductPackage());
+        assertEquals(orderResponse.getIsApproved(), actual.getIsApproved());
+
+    }
 }
