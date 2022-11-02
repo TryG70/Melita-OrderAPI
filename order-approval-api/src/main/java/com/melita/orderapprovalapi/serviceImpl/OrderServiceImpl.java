@@ -25,7 +25,7 @@ public class OrderServiceImpl implements OrderService {
                 .customerName(orderResponse.getCustomerName())
                 .customerEmail(orderResponse.getCustomerEmail())
                 .installationAddress(orderResponse.getInstallationAddress())
-                .installationDates(orderResponse.getInstallationDates())
+                .installationDate(orderResponse.getInstallationDate())
                 .product(orderResponse.getProduct())
                 .productPackage(orderResponse.getProductPackage())
                 .build();
@@ -38,39 +38,33 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public OrderResponse approveOrder(Long id) {
 
-        Order order = findOrder(id);
-
-        return OrderResponse.builder()
-                .customerName(order.getCustomerName())
-                .customerEmail(order.getCustomerEmail())
-                .installationAddress(order.getInstallationAddress())
-                .installationDates(order.getInstallationDates())
-                .product(order.getProduct())
-                .productPackage(order.getProductPackage())
-                .isApproved(true)
-                .build();
+        return buildOrderResponse(true, id);
     }
-
 
     @Override
     public OrderResponse declineOrder(Long id) {
 
-        Order order = findOrder(id);
-
-        return OrderResponse.builder()
-                .customerName(order.getCustomerName())
-                .customerEmail(order.getCustomerEmail())
-                .installationAddress(order.getInstallationAddress())
-                .installationDates(order.getInstallationDates())
-                .product(order.getProduct())
-                .productPackage(order.getProductPackage())
-                .isApproved(false)
-                .build();
+        return buildOrderResponse(false, id);
     }
 
     public Order findOrder(Long id) {
 
         return orderRepository.findById(id).orElseThrow(() -> new OrderNotFoundException("Order not found"));
+    }
+
+    public OrderResponse buildOrderResponse(boolean isApproved, Long id) {
+
+        Order order = findOrder(id);
+
+        return OrderResponse.builder()
+                .customerName(order.getCustomerName())
+                .customerEmail(order.getCustomerEmail())
+                .installationAddress(order.getInstallationAddress())
+                .installationDate(order.getInstallationDate())
+                .product(order.getProduct())
+                .productPackage(order.getProductPackage())
+                .isApproved(isApproved)
+                .build();
     }
 
 
