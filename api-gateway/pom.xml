@@ -11,6 +11,7 @@
     <packaging>jar</packaging>
     <artifactId>api-gateway</artifactId>
 
+    <!-- to builder maven jar -->
     <build>
         <plugins>
             <plugin>
@@ -19,6 +20,7 @@
             </plugin>
         </plugins>
     </build>
+
 
     <dependencies>
         <dependency>
