@@ -32,6 +32,4 @@ public class OrderRequest {
     @NotNull(message = "Product is required")
     private String product;
 
-
-
 }
